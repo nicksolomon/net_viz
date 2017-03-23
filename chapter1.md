@@ -21,6 +21,9 @@ Read the docs
 
 *** =pre_exercise_code
 ```{r}
+# to prevent issue w/ surveillance pkg
+'___BLOCK_SOLUTION_EXEC___'
+
 library(igraph)
 library(surveillance)
 library(ggraph)
@@ -77,6 +80,9 @@ Use the familiar `ggplot` syntax to access vertex attributes.
 
 *** =pre_exercise_code
 ```{r}
+# to prevent issue w/ surveillance pkg
+'___BLOCK_SOLUTION_EXEC___'
+
 library(igraph)
 library(surveillance)
 library(ggraph)
