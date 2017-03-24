@@ -3,6 +3,12 @@ title       : Visualizing relational data with ggraph
 description : The ggraph package brings ggplot2 like syntax to network visualizations.
 attachments :
   slides_link : https://s3.amazonaws.com/assets.datacamp.com/course/teach/slides_example.pdf
+--- type:VideoExercise lang:r aspect_ratio:62.5
+## Relational data and ggraph
+
+*** =video_link
+//player.vimeo.com/video/209834264
+
 --- type:NormalExercise lang:r key:1085797f84
 ## Create an igraph object and plot it
 
@@ -27,6 +33,8 @@ Read the docs
 library(igraph)
 library(ggraph)
 library(dplyr)
+
+load(url("http://assets.datacamp.com/production/course_3565/hagelloch.df.RData"))
 ```
 
 *** =sample_code
@@ -84,6 +92,8 @@ Use the familiar `ggplot` syntax to access vertex attributes.
 library(igraph)
 library(ggraph)
 library(dplyr)
+
+load(url("http://assets.datacamp.com/production/course_3565/hagelloch.df.RData"))
 hagelloch.df <- mutate(hagelloch.df, CL = as.character(CL))
 ```
 
