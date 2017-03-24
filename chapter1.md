@@ -25,7 +25,7 @@ Make sure that the edgelist is converted to a matrix, and that you're using the 
 *** =pre_exercise_code
 ```{r}
 # to prevent issue w/ surveillance pkg
-'___BLOCK_SOLUTION_EXEC___'
+
 library(igraph)
 library(ggraph)
 library(dplyr)
@@ -69,8 +69,8 @@ ggraph(measles_net) +
 ```{r}
 test_error()
 
-# ex() %>% check_object("as_adj(measles_net)") #%>%
-#   check_equal(incorrect_msg = "Make sure that your columns are in the right order.")
+ex() %>% check_object("as_adj(measles_net)") #%>%
+  check_equal(incorrect_msg = "Make sure that your columns are in the right order.")
 
 #test_object("measles_net")
 
