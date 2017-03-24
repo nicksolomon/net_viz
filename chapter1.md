@@ -94,7 +94,7 @@ ex() %>% check_function("geom_node_point")
 *** =instructions
 - Use the `vertex_attr()` function from the `igraph` package to add the
 vertex attributes `class` and `num_infected` to each vertex of the graph you
-made in the previous exercise. The attribute `class` corresponds to the column `CL` of the `hagelloch.df` data frame. To compute the number of infected individuals, use the function `degree()` with argument `mode = "in"`.
+made in the previous exercise. The attribute `class` corresponds to the column `CL` of the `hagelloch.df` data frame. To compute the number of infected individuals, use the function `degree()` with argument `mode = "out"`.
 
 - Plot this graph with `num_infected` mapped to node size and `class` mapped to
 node color.
@@ -150,7 +150,7 @@ measles_net <- hagelloch.df %>%
 vertex_attr(measles_net, "class") <- hagelloch.df[["CL"]]
 
 # add the vertex attribute num_infected
-vertex_attr(measles_net, "num_infected") <- degree(measles_net, mode = "in")
+vertex_attr(measles_net, "num_infected") <- degree(measles_net, mode = "out")
 
 # plot this graph
 ggraph(measles_net) +
@@ -172,7 +172,7 @@ ex() %>% check_expr("vertex_attr(measles_net, 'class')") %>%
   
 ex() %>% check_expr("vertex_attr(measles_net, 'num_infected')") %>% 
   check_result(error_msg = "Make sure you have created the 'num_infected' attribute.") %>% 
-  check_equal(incorrect_msg = "Is the 'num_infected' attribute equal to the in degree of each vertex?")
+  check_equal(incorrect_msg = "Is the 'num_infected' attribute equal to the out-degree of each vertex?")
   
 ex() %>% check_function("ggraph",
                         not_called_msg = "Plot the graph with the `ggraph()` function.") %>% 
