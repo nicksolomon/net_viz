@@ -68,6 +68,17 @@ ggraph(measles_net) +
 *** =sct
 ```{r}
 test_error()
+
+ex() %>% check_object("measles_net") %>% 
+  check_equal(incorrect_msg = "Make sure that your columns are in the right order.")
+  
+ex() %>% check_function("ggraph",
+                        not_called_msg = "Plot the graph with the `ggraph()` function.") %>% 
+  check_arg("graph", arg_not_specified_msg = "`measles_net` should be the first argument to `ggraph`.")
+
+ex() %>% check_function("geom_edge_link")
+
+ex() %>% check_function("geom_node_point")
 ```
 
 --- type:NormalExercise lang:r key:cc2b65a2f6
