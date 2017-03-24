@@ -26,7 +26,6 @@ Make sure that the edgelist is converted to a matrix, and that you're using the 
 ```{r}
 # to prevent issue w/ surveillance pkg
 '___BLOCK_SOLUTION_EXEC___'
-
 library(igraph)
 library(ggraph)
 library(dplyr)
