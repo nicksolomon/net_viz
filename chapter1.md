@@ -69,20 +69,21 @@ ggraph(measles_net) +
 ```{r}
 test_error()
 
-# ex() %>% check_object("measles_net") %>%
-#   check_equal(incorrect_msg = "Make sure that your columns are in the right order.")
-
-#test_object("measles_net")
-
 ex() %>% check_expr("as_edgelist(measles_net)") %>%
   check_result() %>%
-  check_equal()
+  check_equal(incorrect_msg = "Make sure that your columns are in the right order.")
   
 ex() %>% check_function("ggraph",
                         not_called_msg = "Plot the graph with the `ggraph()` function.") %>% 
   check_arg("graph", arg_not_specified_msg = "`measles_net` should be the first argument to `ggraph`.")
 
-ex() %>% check_function("geom_edge_link")
+edge_state <- ex() %>% check_function("geom_edge_link")
+edge_state %>% check_arg("arrow",
+                         arg_not_specified_msg = "Add arrows to your plot.") %>% 
+  check_equal(incorrect_msg = "Use the already defined `my_arrow`.")
+edge_state %>% check_arg("end_cap",
+                         arg_not_specified_msg = "Add end_caps to your plot.") %>% 
+  check_equal(incorrect_msg = "Use the already defined `my_end_cap`.")
 
 ex() %>% check_function("geom_node_point")
 ```
@@ -104,8 +105,6 @@ Use the familiar `ggplot` syntax to access vertex attributes when plotting.
 *** =pre_exercise_code
 ```{r}
 # to prevent issue w/ surveillance pkg
-'___BLOCK_SOLUTION_EXEC___'
-
 library(igraph)
 library(ggraph)
 library(dplyr)
@@ -162,4 +161,41 @@ ggraph(measles_net) +
 *** =sct
 ```{r}
 test_error()
+
+ex() %>% check_expr("as_edgelist(measles_net)") %>%
+  check_result() %>%
+  check_equal(incorrect_msg = "Make sure that your columns are in the right order.")
+  
+ex() %>% check_expr("vertex_attr(measles_net, 'class')",
+                    incorrect_msg = "Make sure you have created the 'class' attribute.") %>% 
+  check_result() %>% 
+  check_equal(incorrect_msg = "Is the 'class' attribute equal to the column `CL`?")
+  
+ex() %>% check_expr("vertex_attr(measles_net, 'num_infected')",
+                    incorrect_msg = "Make sure you have created the 'num_infected' attribute.") %>% 
+  check_result() %>% 
+  check_equal(incorrect_msg = "Is the 'num_infected' attribute equal to the in degree of each vertex?")
+  
+ex() %>% check_function("ggraph",
+                        not_called_msg = "Plot the graph with the `ggraph()` function.") %>% 
+  check_arg("graph", arg_not_specified_msg = "`measles_net` should be the first argument to `ggraph`.")
+
+edge_state <- ex() %>% check_function("geom_edge_link")
+edge_state %>% check_arg("arrow",
+                         arg_not_specified_msg = "Add arrows to your plot.") %>% 
+  check_equal(incorrect_msg = "Use the already defined `my_arrow`.")
+edge_state %>% check_arg("end_cap",
+                         arg_not_specified_msg = "Add end_caps to your plot.") %>% 
+  check_equal(incorrect_msg = "Use the already defined `my_end_cap`.")
+
+ex() %>% check_function("geom_node_point")
+
+aes_state <- ex() %>% check_function("aes")
+aes_state %>% check_arg("color",
+                        arg_not_specified_msg = "Color the vertices according to class.") %>% 
+  check_equal()
+
+aes_state %>% check_arg("size",
+                        arg_not_specified_msg = "Map vertex size to `num_infected`.") %>% 
+  check_equal()
 ```
