@@ -1,13 +1,13 @@
 ---
 title       : Visualizing relational data with ggraph
 description : The ggraph package brings ggplot2 like syntax to network visualizations.
---- type:VideoExercise lang:r aspect_ratio:62.5 key:1093b879d9
+--- type:VideoExercise lang:r aspect_ratio:62.5 xp:50 skills:1,4 key:1093b879d9
 ## Relational data and ggraph
 
 *** =video_link
 //player.vimeo.com/video/209834264
 
---- type:NormalExercise lang:r key:1085797f84
+--- type:NormalExercise lang:r xp:100 skills:1,4 key:1085797f84
 ## Create an igraph object and plot it
 
 We'll be using the `hagelloch.df` dataframe from the `surveillance` package to
@@ -88,7 +88,7 @@ edge_state %>% check_arg("end_cap",
 ex() %>% check_function("geom_node_point")
 ```
 
---- type:NormalExercise lang:r key:cc2b65a2f6
+--- type:NormalExercise lang:r xp:100 skills:1,4 key:cc2b65a2f6
 ## Add vertex attributes and map them to aesthetics in ggraph
 
 *** =instructions
