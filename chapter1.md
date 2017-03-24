@@ -34,7 +34,7 @@ library(igraph)
 library(ggraph)
 library(dplyr)
 
-load("datasets/hagelloch.df.RData")
+load(url("https://github.com/nicksolomon/net_viz/blob/master/datasets/hagelloch.df.RData?raw=true"))
 ```
 
 *** =sample_code
@@ -93,7 +93,7 @@ library(igraph)
 library(ggraph)
 library(dplyr)
 
-load("datasets/hagelloch.df.RData")
+load(url("https://github.com/nicksolomon/net_viz/blob/master/datasets/hagelloch.df.RData?raw=true"))
 hagelloch.df <- mutate(hagelloch.df, CL = as.character(CL))
 ```
 
