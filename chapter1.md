@@ -111,8 +111,7 @@ library(dplyr)
 
 load(url("https://github.com/nicksolomon/net_viz/blob/master/datasets/hagelloch.df.RData?raw=true"))
 hagelloch.df <- hagelloch.df %>% 
-  mutate(CL = as.character(CL)) %>% 
-  filter(IFTO != -1)
+  mutate(CL = as.character(CL))
   
 ```
 
@@ -123,6 +122,7 @@ my_end_cap = circle(1, "mm")
 
 measles_net <- hagelloch.df %>% 
   select(IFTO, PN) %>%
+  filter(IFTO != -1) %>% 
   as.matrix() %>% 
   graph_from_edgelist()
 
