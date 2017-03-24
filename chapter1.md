@@ -52,6 +52,7 @@ ggraph(___)
 *** =solution
 ```{r}
 my_arrow = arrow(length = unit(2, "mm"), type = "closed")
+my_end_cap = circle(1, "mm")
 
 # create an igraph object
 measles_net <- hagelloch.df %>% 
