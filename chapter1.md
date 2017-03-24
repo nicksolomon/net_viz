@@ -190,10 +190,8 @@ ex() %>% check_function("geom_node_point")
 
 aes_state <- ex() %>% check_function("aes")
 aes_state %>% check_arg("color",
-                        arg_not_specified_msg = "Color the vertices according to class.") %>% 
-  check_equal()
+                        arg_not_specified_msg = "Color the vertices according to class.")
 
 aes_state %>% check_arg("size",
-                        arg_not_specified_msg = "Map vertex size to `num_infected`.") %>% 
-  check_equal()
+                        arg_not_specified_msg = "Map vertex size to `num_infected`.")
 ```
