@@ -1,10 +1,10 @@
 ---
-title       : Visualizing relational data with `ggraph`
-description : The `ggraph` package brings `ggplot2` like syntax to network visualizations.
+title       : Visualizing relational data with ggraph
+description : The ggraph package brings ggplot2 like syntax to network visualizations.
 attachments :
   slides_link : https://s3.amazonaws.com/assets.datacamp.com/course/teach/slides_example.pdf
 --- type:NormalExercise lang:r key:1085797f84
-## Create an `igraph` object and plot it
+## Create an igraph object and plot it
 
 We'll be using the `hagelloch.df` dataframe from the `surveillance` package to
 create a graph of the transmission of a measles outbreak.
@@ -25,10 +25,8 @@ Read the docs
 '___BLOCK_SOLUTION_EXEC___'
 
 library(igraph)
-library(surveillance)
 library(ggraph)
 library(dplyr)
-data("hagelloch")
 ```
 
 *** =sample_code
@@ -65,7 +63,7 @@ test_error()
 ```
 
 --- type:NormalExercise lang:r key:cc2b65a2f6
-## Add vertex attributes and map them to aesthetics in `ggraph`
+## Add vertex attributes and map them to aesthetics in ggraph
 
 *** =instructions
 - Use the `vertex_attr()` function from the `igraph` package to add the
@@ -84,11 +82,8 @@ Use the familiar `ggplot` syntax to access vertex attributes.
 '___BLOCK_SOLUTION_EXEC___'
 
 library(igraph)
-library(surveillance)
 library(ggraph)
 library(dplyr)
-
-data("hagelloch")
 hagelloch.df <- mutate(hagelloch.df, CL = as.character(CL))
 ```
 
