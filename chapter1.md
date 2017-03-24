@@ -143,6 +143,7 @@ my_end_cap = circle(1, "mm")
 
 measles_net <- hagelloch.df %>% 
   select(IFTO, PN) %>%
+  filter(IFTO != -1) %>% 
   as.matrix() %>% 
   graph_from_edgelist()
 
