@@ -122,7 +122,7 @@ my_arrow = arrow(length = unit(5, "mm"), type = "closed")
 my_end_cap = circle(1, "mm")
 
 measles_net <- hagelloch.df %>% 
-  select(PN, IFTO) %>%
+  select(IFTO, PN) %>%
   as.matrix() %>% 
   graph_from_edgelist()
 
