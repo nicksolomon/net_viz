@@ -1,8 +1,6 @@
 ---
 title       : Visualizing relational data with ggraph
 description : The ggraph package brings ggplot2 like syntax to network visualizations.
-attachments :
-  slides_link : https://s3.amazonaws.com/assets.datacamp.com/course/teach/slides_example.pdf
 --- type:VideoExercise lang:r aspect_ratio:62.5 key:1093b879d9
 ## Relational data and ggraph
 
@@ -18,13 +16,12 @@ create a graph of the transmission of a measles outbreak.
 *** =instructions
 - Use the patient ID number (`PN`) column and the putative source of infection
 (`IFTO`) column to make an `igraph` object where the vertices are patients and
-the edges show who infected who.
+the edges show who infected who. Make sure to put these to columns in the right order!
 
 - Plot this graph using `ggraph` with straight edges and points for nodes.
 
 *** =hint
-Read the docs
-
+Make sure that the edgelist is converted to a matrix, and that you're using the `geom_edge_link()` and `geom_node_point()` functions.
 *** =pre_exercise_code
 ```{r}
 # to prevent issue w/ surveillance pkg
@@ -35,11 +32,15 @@ library(ggraph)
 library(dplyr)
 
 load(url("https://github.com/nicksolomon/net_viz/blob/master/datasets/hagelloch.df.RData?raw=true"))
+
+hagelloch.df <- hagelloch.df %>% 
+  filter(IFTO != -1)
 ```
 
 *** =sample_code
 ```{r}
 my_arrow = arrow(length = unit(5, "mm"), type = "closed")
+my_end_cap = circle(1, "mm")
 
 # create an igraph object
 measles_net <- ___
@@ -54,14 +55,13 @@ my_arrow = arrow(length = unit(2, "mm"), type = "closed")
 
 # create an igraph object
 measles_net <- hagelloch.df %>% 
-  select(PN, IFTO) %>%
-  filter(IFTO != -1) %>% 
+  select(IFTO, PN) %>%
   as.matrix() %>% 
   graph_from_edgelist()
 
 # plot measles_net
 ggraph(measles_net) +
-  geom_edge_link(arrow = my_arrow, end_cap = circle(1, "mm")) +
+  geom_edge_link(arrow = my_arrow, end_cap = my_end_cap) +
   geom_node_point()
 ```
 
@@ -82,7 +82,7 @@ made in the previous exercise. The attribute `class` corresponds to the column `
 node color.
 
 *** =hint
-Use the familiar `ggplot` syntax to access vertex attributes.
+Use the familiar `ggplot` syntax to access vertex attributes when plotting.
 
 *** =pre_exercise_code
 ```{r}
@@ -94,16 +94,19 @@ library(ggraph)
 library(dplyr)
 
 load(url("https://github.com/nicksolomon/net_viz/blob/master/datasets/hagelloch.df.RData?raw=true"))
-hagelloch.df <- mutate(hagelloch.df, CL = as.character(CL))
+hagelloch.df <- hagelloch.df %>% 
+  mutate(CL = as.character(CL)) %>% 
+  filter(IFTO != -1)
+  
 ```
 
 *** =sample_code
 ```{r}
 my_arrow = arrow(length = unit(5, "mm"), type = "closed")
+my_end_cap = circle(1, "mm")
 
 measles_net <- hagelloch.df %>% 
   select(PN, IFTO) %>%
-  filter(IFTO != -1) %>% 
   as.matrix() %>% 
   graph_from_edgelist()
 
@@ -114,16 +117,16 @@ vertex_attr(measles_net, ____) <- ____
 vertex_attr(measles_net, ____) <- ____
 
 # plot this graph
-ggraph(measles_net)
+ggraph(____)
 ```
 
 *** =solution
 ```{r}
 my_arrow = arrow(length = unit(5, "mm"), type = "closed")
+my_end_cap = circle(1, "mm")
 
 measles_net <- hagelloch.df %>% 
-  select(PN, IFTO) %>%
-  filter(IFTO != -1) %>% 
+  select(IFTO, PN) %>%
   as.matrix() %>% 
   graph_from_edgelist()
 
@@ -135,7 +138,7 @@ vertex_attr(measles_net, "num_infected") <- degree(measles_net, mode = "in")
 
 # plot this graph
 ggraph(measles_net) +
-  geom_edge_link() +
+  geom_edge_link(arrow = my_arrow, end_cap = my_end_cap) +
   geom_node_point(aes(color = class, size = num_infected))
 ```
 
