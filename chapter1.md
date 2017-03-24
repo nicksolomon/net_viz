@@ -75,7 +75,7 @@ test_error()
 #test_object("measles_net")
 
 ex() %>% check_expr("as_adj(measles_net)") %>%
-  check_result() %>% 
+  check_output() %>% 
   check_equal()
   
 ex() %>% check_function("ggraph",
