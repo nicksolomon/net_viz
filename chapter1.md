@@ -34,7 +34,7 @@ library(igraph)
 library(ggraph)
 library(dplyr)
 
-load(url("http://assets.datacamp.com/production/course_3565/hagelloch.df.RData"))
+load("datasets/hagelloch.df.RData")
 ```
 
 *** =sample_code
@@ -93,7 +93,7 @@ library(igraph)
 library(ggraph)
 library(dplyr)
 
-load(url("http://assets.datacamp.com/production/course_3565/hagelloch.df.RData"))
+load("datasets/hagelloch.df.RData")
 hagelloch.df <- mutate(hagelloch.df, CL = as.character(CL))
 ```
 
