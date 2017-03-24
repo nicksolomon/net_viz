@@ -166,14 +166,12 @@ ex() %>% check_expr("as_edgelist(measles_net)") %>%
   check_result() %>%
   check_equal(incorrect_msg = "Make sure that your columns are in the right order.")
   
-ex() %>% check_expr("vertex_attr(measles_net, 'class')",
-                    incorrect_msg = "Make sure you have created the 'class' attribute.") %>% 
-  check_result() %>% 
+ex() %>% check_expr("vertex_attr(measles_net, 'class')") %>% 
+  check_result(error_msg = "Make sure you have created the 'class' attribute.") %>% 
   check_equal(incorrect_msg = "Is the 'class' attribute equal to the column `CL`?")
   
-ex() %>% check_expr("vertex_attr(measles_net, 'num_infected')",
-                    incorrect_msg = "Make sure you have created the 'num_infected' attribute.") %>% 
-  check_result() %>% 
+ex() %>% check_expr("vertex_attr(measles_net, 'num_infected')") %>% 
+  check_result(error_msg = "Make sure you have created the 'num_infected' attribute.") %>% 
   check_equal(incorrect_msg = "Is the 'num_infected' attribute equal to the in degree of each vertex?")
   
 ex() %>% check_function("ggraph",
