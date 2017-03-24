@@ -3,7 +3,7 @@ title       : Visualizing relational data with ggraph
 description : The ggraph package brings ggplot2 like syntax to network visualizations.
 attachments :
   slides_link : https://s3.amazonaws.com/assets.datacamp.com/course/teach/slides_example.pdf
---- type:VideoExercise lang:r aspect_ratio:62.5
+--- type:VideoExercise lang:r aspect_ratio:62.5 key:1093b879d9
 ## Relational data and ggraph
 
 *** =video_link
